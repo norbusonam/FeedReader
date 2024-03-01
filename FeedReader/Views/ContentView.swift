@@ -6,11 +6,27 @@
 //
 
 import SwiftUI
+import SwiftData
+
+enum Page {
+    case home, feeds
+}
 
 struct ContentView: View {
+    @State var page: Page = .home
+    
     var body: some View {
-        NavigationSplitView {
-        } detail: {
+        TabView(selection: $page) {
+            Home()
+                .tag(Page.home)
+                .tabItem {
+                    Image(systemName: "house")
+                }
+            Feeds()
+                .tag(Page.feeds)
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                }
         }
     }
 }
