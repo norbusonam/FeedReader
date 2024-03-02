@@ -19,7 +19,8 @@ struct FeedsView: View {
         NavigationView {
             List(feeds) { feed in
                 NavigationLink {
-                    Text(feed.title)
+                    FeedView(feedItems: ["Story 1", "Story 2", "Story 3"])
+                        .navigationTitle(feed.title)
                 } label: {
                     Text(feed.title)
                 }

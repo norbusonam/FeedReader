@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationView {
-            List { }
+            FeedView(feedItems: ["Story 1", "Story 2", "Story 3"])
                 .navigationTitle("Home")
         }
     }
