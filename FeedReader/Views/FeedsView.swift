@@ -40,6 +40,7 @@ struct FeedsView: View {
             }
             .sheet(isPresented: $showNewFeedSheet) {
                 NewFeedSheetView()
+                    .presentationDetents([.height(120)])
             }
         }
     }
