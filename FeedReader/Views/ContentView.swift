@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 enum Page {
     case home, feeds
@@ -33,4 +32,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(for: RSSFeed.self)
 }

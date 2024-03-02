@@ -18,4 +18,5 @@ struct HomeView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(for: RSSFeed.self)
 }

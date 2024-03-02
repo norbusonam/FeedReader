@@ -19,4 +19,5 @@ struct FeedsView: View {
 
 #Preview {
     ContentView(page: Page.feeds)
+        .modelContainer(for: RSSFeed.self)
 }
