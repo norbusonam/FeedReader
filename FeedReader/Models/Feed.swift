@@ -1,5 +1,5 @@
 //
-//  RssFeed.swift
+//  Feed.swift
 //  FeedReader
 //
 //  Created by Norbu Sonam on 2/29/24.
@@ -10,7 +10,7 @@ import SwiftData
 import FeedKit
 
 @Model
-class RssFeed {
+class Feed {
     // feed state
     @Attribute(.unique) var feedLink: String = ""
     var isFetching: Bool = false

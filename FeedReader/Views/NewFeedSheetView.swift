@@ -11,14 +11,14 @@ struct NewFeedSheetView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
-    @State private var rssFeed = RssFeed(feedLink: "")
+    @State private var feed = Feed(feedLink: "")
     
     @FocusState private var feedLinkFocused
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                TextField("Link to RSS Feed", text: $rssFeed.feedLink)
+                TextField("Link to Feed", text: $feed.feedLink)
                     .keyboardType(.URL)
                     .focused($feedLinkFocused)
                     .padding()
@@ -30,23 +30,23 @@ struct NewFeedSheetView: View {
                     .onAppear {
                         feedLinkFocused = true
                     }
-                    .onChange(of: rssFeed.feedLink) {
-                        rssFeed.resetFeedProperties()
-                        rssFeed.fetch()
+                    .onChange(of: feed.feedLink) {
+                        feed.resetFeedProperties()
+                        feed.fetch()
                     }
             }
             .padding()
             .navigationTitle("New Feed")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                if rssFeed.isFetching {
+                if feed.isFetching {
                     ProgressView()
                 } else {
                     Button("Create", systemImage: "plus") {
-                        modelContext.insert(rssFeed)
+                        modelContext.insert(feed)
                         dismiss()
                     }
-                    .disabled(!rssFeed.isValid)
+                    .disabled(!feed.isValid)
                 }
             }
         }
@@ -55,5 +55,5 @@ struct NewFeedSheetView: View {
 
 #Preview {
     ContentView(page: .feeds)
-        .modelContainer(for: RssFeed.self)
+        .modelContainer(for: Feed.self)
 }
