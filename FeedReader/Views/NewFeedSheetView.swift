@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NewFeedSheetView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     @State private var rssFeed = RSSFeed(feedLink: "")
     
     var body: some View {
@@ -17,6 +18,7 @@ struct NewFeedSheetView: View {
         Button("add") {
             // TODO: validate feed
             modelContext.insert(rssFeed)
+            dismiss()
         }
      }
 }
