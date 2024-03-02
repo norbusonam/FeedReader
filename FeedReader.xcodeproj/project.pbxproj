@@ -14,6 +14,7 @@
 		07F4471B2B91AB04003717E7 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4471A2B91AB04003717E7 /* RSSFeed.swift */; };
 		07F4471D2B91AFCB003717E7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4471C2B91AFCB003717E7 /* HomeView.swift */; };
 		07F4471F2B91AFD9003717E7 /* FeedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4471E2B91AFD9003717E7 /* FeedsView.swift */; };
+		07F447242B92CF3C003717E7 /* NewFeedSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447232B92CF3C003717E7 /* NewFeedSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		07F4471A2B91AB04003717E7 /* RSSFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeed.swift; sourceTree = "<group>"; };
 		07F4471C2B91AFCB003717E7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		07F4471E2B91AFD9003717E7 /* FeedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsView.swift; sourceTree = "<group>"; };
+		07F447232B92CF3C003717E7 /* NewFeedSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeedSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				07F447072B905297003717E7 /* ContentView.swift */,
 				07F4471C2B91AFCB003717E7 /* HomeView.swift */,
 				07F4471E2B91AFD9003717E7 /* FeedsView.swift */,
+				07F447232B92CF3C003717E7 /* NewFeedSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				07F447082B905297003717E7 /* ContentView.swift in Sources */,
 				07F447062B905297003717E7 /* FeedReaderApp.swift in Sources */,
 				07F4471F2B91AFD9003717E7 /* FeedsView.swift in Sources */,
+				07F447242B92CF3C003717E7 /* NewFeedSheetView.swift in Sources */,
 				07F4471D2B91AFCB003717E7 /* HomeView.swift in Sources */,
 				07F4471B2B91AB04003717E7 /* RSSFeed.swift in Sources */,
 			);
