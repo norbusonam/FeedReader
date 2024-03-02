@@ -10,7 +10,7 @@ import SwiftUI
 struct NewFeedSheetView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    @State private var rssFeed = RSSFeed(feedLink: "")
+    @State private var rssFeed = RssFeed(feedLink: "")
     
     var body: some View {
         TextField("Link to RSS Feed", text: $rssFeed.feedLink)
@@ -25,5 +25,5 @@ struct NewFeedSheetView: View {
 
 #Preview {
     ContentView(page: .feeds)
-        .modelContainer(for: RSSFeed.self)
+        .modelContainer(for: RssFeed.self)
 }

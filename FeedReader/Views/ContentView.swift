@@ -32,5 +32,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: RSSFeed.self)
+        .modelContainer(for: RssFeed.self)
 }

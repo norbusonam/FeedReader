@@ -8,7 +8,7 @@
 import SwiftData
 
 @Model
-class RSSFeed {
+class RssFeed {
     var feedLink: String;
     
     init(feedLink: String) {

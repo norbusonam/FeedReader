@@ -13,7 +13,7 @@ struct FeedsView: View {
     
     @State private var showNewFeedSheet = false
     
-    @Query private var rssFeeds: [RSSFeed]
+    @Query private var rssFeeds: [RssFeed]
     
     var body: some View {
         NavigationView {
@@ -47,5 +47,5 @@ struct FeedsView: View {
 
 #Preview {
     ContentView(page: Page.feeds)
-        .modelContainer(for: RSSFeed.self)
+        .modelContainer(for: RssFeed.self)
 }
