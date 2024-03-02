@@ -17,12 +17,12 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $page) {
-            Home()
+            HomeView()
                 .tag(Page.home)
                 .tabItem {
                     Image(systemName: "house")
                 }
-            Feeds()
+            FeedsView()
                 .tag(Page.feeds)
                 .tabItem {
                     Image(systemName: "list.bullet")
