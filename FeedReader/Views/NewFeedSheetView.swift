@@ -30,16 +30,24 @@ struct NewFeedSheetView: View {
                     .onAppear {
                         feedLinkFocused = true
                     }
+                    .onChange(of: rssFeed.feedLink) {
+                        rssFeed.resetFeedProperties()
+                        rssFeed.fetch()
+                    }
             }
             .padding()
             .navigationTitle("New Feed")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                Button("Create", systemImage: "plus") {
-                    modelContext.insert(rssFeed)
-                    dismiss()
+                if rssFeed.isFetching {
+                    ProgressView()
+                } else {
+                    Button("Create", systemImage: "plus") {
+                        modelContext.insert(rssFeed)
+                        dismiss()
+                    }
+                    .disabled(!rssFeed.isValid)
                 }
-                .disabled(rssFeed.feedLink.isEmpty)
             }
         }
     }
