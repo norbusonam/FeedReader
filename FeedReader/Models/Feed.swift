@@ -17,11 +17,13 @@ class Feed {
     var lastSuccessfullyFetchedAt: Date? = nil
     var isValid: Bool {
         !feedLink.isEmpty &&
-        !title.isEmpty
+        !title.isEmpty &&
+        !image.isEmpty
     }
     
     // feed properties
     var title: String = ""
+    var image: String = ""
     
     init(feedLink: String) {
         self.feedLink = feedLink
@@ -41,10 +43,13 @@ class Feed {
                 switch feed {
                 case let .atom(feed):
                     self.title = feed.title ?? ""
+                    self.image = feed.icon ?? ""
                 case let .rss(feed):
                     self.title = feed.title ?? ""
+                    self.image = feed.image?.url ?? ""
                 case let .json(feed):
                     self.title = feed.title ?? ""
+                    self.image = feed.icon ?? ""
                 }
                 if self.isValid {
                     self.lastSuccessfullyFetchedAt = Date.now

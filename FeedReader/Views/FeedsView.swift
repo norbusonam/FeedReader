@@ -22,6 +22,7 @@ struct FeedsView: View {
                     FeedView(feedItems: ["Story 1", "Story 2", "Story 3"])
                         .navigationTitle(feed.title)
                 } label: {
+                    AsyncImage(url: URL(string: feed.image))
                     Text(feed.title)
                 }
                 .swipeActions {
