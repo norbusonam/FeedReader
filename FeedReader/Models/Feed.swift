@@ -81,10 +81,22 @@ class RSSParser: NSObject, XMLParserDelegate {
             return
         }
         currentFeedUrl = url
-        let parser = XMLParser(contentsOf: feedUrl)
-        parser?.delegate = self
-        parser?.parse()
-        completionHandler?(rssFeed)
+        let task = URLSession.shared.dataTask(with: feedUrl) { (data, response, error) in
+            guard let data = data, error == nil else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                completionHandler?(nil)
+                return
+            }
+            let parser = XMLParser(data: data)
+            parser.delegate = self
+            if parser.parse() {
+                completionHandler?(self.rssFeed)
+            } else {
+                print("Error: Unable to parse feed")
+                completionHandler?(nil)
+            }
+        }
+        task.resume()
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
