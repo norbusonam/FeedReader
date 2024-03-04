@@ -22,26 +22,36 @@ struct NewFeedSheetView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                TextField("Link to Feed", text: $url)
-                    .keyboardType(.URL)
-                    .focused($feedLinkFocused)
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(.primary)
-                            .opacity(0.1)
-                    }
-                    .onAppear {
-                        feedLinkFocused = true
-                    }
-                    .onChange(of: url) {
-                        rssFeed = nil
-                        isParsing = true
-                        rssParser.parseFeed(url: url) { rf in
-                            rssFeed = rf
-                            isParsing = false
+                ZStack(alignment: .trailing) {
+                    TextField("Link to Feed", text: $url)
+                        .keyboardType(.URL)
+                        .focused($feedLinkFocused)
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(.primary)
+                                .opacity(0.1)
                         }
+                        .onAppear {
+                            feedLinkFocused = true
+                        }
+                        .onChange(of: url) {
+                            rssFeed = nil
+                            isParsing = true
+                            rssParser.parseFeed(url: url) { rf in
+                                rssFeed = rf
+                                isParsing = false
+                            }
+                        }
+                    if !url.isEmpty {
+                        Button(action: {
+                            url = ""
+                        }) {
+                            Image(systemName: "x.circle.fill")
+                        }
+                        .padding()
                     }
+                }
             }
             .padding()
             .navigationTitle("New Feed")
