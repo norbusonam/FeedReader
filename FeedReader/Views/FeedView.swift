@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct FeedView: View {
-    let feedItems: [String]
+    let rssItems: [RSSItem]
     
     var body: some View {
-        List(feedItems, id: \.self) { feedItem in
+        List(rssItems, id: \.self) { rssItem in
             NavigationLink {
-                Text(feedItem)
+                Text(rssItem.title)
             } label: {
-                
-                Text(feedItem)
+                Text(rssItem.title)
             }
             
         }
@@ -25,5 +24,5 @@ struct FeedView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Feed.self)
+        .modelContainer(for: RSSFeed.self)
 }

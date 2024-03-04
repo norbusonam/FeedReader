@@ -13,25 +13,24 @@ struct FeedsView: View {
     
     @State private var showNewFeedSheet = false
     
-    @Query private var feeds: [Feed]
+    @Query private var rssFeeds: [RSSFeed]
     
     var body: some View {
         NavigationView {
-            List(feeds) { feed in
+            List(rssFeeds) { rssFeed in
                 NavigationLink {
-                    FeedView(feedItems: ["Story 1", "Story 2", "Story 3"])
-                        .navigationTitle(feed.title)
+                    FeedView(rssItems: rssFeed.items)
+                        .navigationTitle(rssFeed.title)
                 } label: {
-                    AsyncImage(url: URL(string: feed.image))
-                    Text(feed.title)
+                    Text(rssFeed.title)
                 }
                 .swipeActions {
                     Button("Delete", systemImage: "trash", role: .destructive) {
-                        modelContext.delete(feed)
+                        modelContext.delete(rssFeed)
                     }
                 }
             }
-            .animation(.default, value: feeds.count)
+            .animation(.default, value: rssFeeds.count)
             .navigationTitle("Feeds")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -50,5 +49,5 @@ struct FeedsView: View {
 
 #Preview {
     ContentView(page: Page.feeds)
-        .modelContainer(for: Feed.self)
+        .modelContainer(for: RSSFeed.self)
 }

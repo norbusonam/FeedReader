@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct NewFeedSheetView: View {
+    private let rssParser = RSSParser()
+    
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     
-    @State private var feed = Feed(feedLink: "")
+    @State private var url: String = ""
+    @State private var rssFeed: RSSFeed? = nil
+    @State private var isParsing = false
     
     @FocusState private var feedLinkFocused
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                TextField("Link to Feed", text: $feed.feedLink)
+                TextField("Link to Feed", text: $url)
                     .keyboardType(.URL)
                     .focused($feedLinkFocused)
                     .padding()
@@ -30,23 +34,29 @@ struct NewFeedSheetView: View {
                     .onAppear {
                         feedLinkFocused = true
                     }
-                    .onChange(of: feed.feedLink) {
-                        feed.resetFeedProperties()
-                        feed.fetch()
+                    .onChange(of: url) {
+                        rssFeed = nil
+                        isParsing = true
+                        rssParser.parseFeed(url: url) { rf in
+                            rssFeed = rf
+                            isParsing = false
+                        }
                     }
             }
             .padding()
             .navigationTitle("New Feed")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                if feed.isFetching {
+                if isParsing {
                     ProgressView()
                 } else {
                     Button("Create", systemImage: "plus") {
-                        modelContext.insert(feed)
-                        dismiss()
+                        if let rf = rssFeed {
+                            modelContext.insert(rf)
+                            dismiss()
+                        }
                     }
-                    .disabled(!feed.isValid)
+                    .disabled(rssFeed == nil)
                 }
             }
         }
@@ -55,5 +65,5 @@ struct NewFeedSheetView: View {
 
 #Preview {
     ContentView(page: .feeds)
-        .modelContainer(for: Feed.self)
+        .modelContainer(for: RSSFeed.self)
 }

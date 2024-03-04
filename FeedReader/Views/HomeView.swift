@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
+    @Query var rssItems: [RSSItem]
+    
     var body: some View {
         NavigationView {
-            FeedView(feedItems: ["Story 1", "Story 2", "Story 3"])
+            FeedView(rssItems: rssItems)
                 .navigationTitle("Home")
         }
     }
@@ -18,5 +21,5 @@ struct HomeView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Feed.self)
+        .modelContainer(for: RSSFeed.self)
 }

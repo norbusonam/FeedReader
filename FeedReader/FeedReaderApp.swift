@@ -14,6 +14,6 @@ struct FeedReaderApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Feed.self)
+        .modelContainer(for: RSSFeed.self)
     }
 }
