@@ -78,6 +78,7 @@ class RSSParser: NSObject, XMLParserDelegate {
     func parseFeed(url: String,  completionHandler: ((RSSFeed?) -> Void)? ) {
         guard let feedUrl = URL(string: url) else {
             print("Error: feed url doesnt seem to be valid")
+            completionHandler?(nil)
             return
         }
         currentFeedUrl = url
