@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0788E3E32B93BFF200FCD1F0 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0788E3E22B93BFF200FCD1F0 /* FeedKit */; };
 		0788E3E52B93CE4800FCD1F0 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788E3E42B93CE4800FCD1F0 /* FeedView.swift */; };
 		07F447062B905297003717E7 /* FeedReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447052B905297003717E7 /* FeedReaderApp.swift */; };
 		07F447082B905297003717E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F447072B905297003717E7 /* ContentView.swift */; };
@@ -39,7 +38,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0788E3E32B93BFF200FCD1F0 /* FeedKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +119,6 @@
 			);
 			name = FeedReader;
 			packageProductDependencies = (
-				0788E3E22B93BFF200FCD1F0 /* FeedKit */,
 			);
 			productName = FeedReader;
 			productReference = 07F447022B905297003717E7 /* FeedReader.app */;
@@ -152,7 +149,6 @@
 			);
 			mainGroup = 07F446F92B905297003717E7;
 			packageReferences = (
-				0788E3E12B93BFF200FCD1F0 /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = 07F447032B905297003717E7 /* Products */;
 			projectDirPath = "";
@@ -408,25 +404,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		0788E3E12B93BFF200FCD1F0 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/nmdias/FeedKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.1.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0788E3E22B93BFF200FCD1F0 /* FeedKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0788E3E12B93BFF200FCD1F0 /* XCRemoteSwiftPackageReference "FeedKit" */;
-			productName = FeedKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 07F446FA2B905297003717E7 /* Project object */;
 }
