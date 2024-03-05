@@ -18,8 +18,10 @@ struct FeedView: View {
                 VStack(alignment: .leading) {
                     Text(rssItem.title)
                         .font(.headline)
+                        .lineLimit(1)
                     Text(rssItem.desc)
                         .font(.subheadline)
+                        .lineLimit(2)
                 }
             }
             
