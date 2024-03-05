@@ -15,7 +15,12 @@ struct FeedView: View {
             NavigationLink {
                 Text(rssItem.title)
             } label: {
-                Text(rssItem.title)
+                VStack(alignment: .leading) {
+                    Text(rssItem.title)
+                        .font(.headline)
+                    Text(rssItem.desc)
+                        .font(.subheadline)
+                }
             }
             
         }
