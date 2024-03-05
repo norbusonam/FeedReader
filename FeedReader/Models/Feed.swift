@@ -45,9 +45,8 @@ class RSSItem {
 class RSSParser: NSObject, XMLParserDelegate {
     private var rssFeed: RSSFeed? = nil
     private var rssItems: [RSSItem] = []
-    private var isInItem: Bool = false
+    private var elementPath: [String] = []
     private var currentFeedUrl: String = ""
-    private var currentElementName: String = ""
     private var currentFeedTitle: String = ""
     private var currentFeedLink: String = ""
     private var currentFeedDesc: String = ""
@@ -56,11 +55,17 @@ class RSSParser: NSObject, XMLParserDelegate {
     private var currentItemDesc: String = ""
     private var parserError: Error? = nil
     
+    private var isInItem: Bool {
+        return elementPath.count > 1 && elementPath[elementPath.count - 2] == "item"
+    }
+    private var currentElementName: String? {
+        return elementPath.last
+    }
+    
     private func resetParse() {
         rssFeed = nil
         rssItems = []
         parserError = nil
-        isInItem = false
     }
     
     private func resetCurrentItem() {
@@ -119,18 +124,33 @@ class RSSParser: NSObject, XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        currentElementName = elementName
+        elementPath.append(elementName)
         switch elementName {
-        case "item": resetCurrentItem(); isInItem = true;
+        case "item": resetCurrentItem()
         case "channel": resetCurrentFeed()
         default: break;
+        }
+        if isInItem {
+            switch elementName {
+            case "title": currentItemTitle = ""
+            case "link": currentItemLink = ""
+            case "desc": currentItemDesc = ""
+            default: break
+            }
+        } else {
+            switch elementName {
+            case "title": currentFeedTitle = ""
+            case "link": currentFeedLink = ""
+            case "desc": currentFeedDesc = ""
+            default: break
+            }
         }
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        _ = elementPath.popLast()
         switch elementName {
         case "item":
-            isInItem = false;
             guard let link = URL(string: currentItemLink),
                   !currentFeedTitle.isEmpty && !currentItemDesc.isEmpty else {
                 print("Error: item doesnt seem to be valid")
